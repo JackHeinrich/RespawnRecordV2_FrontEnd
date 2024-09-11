@@ -29,3 +29,18 @@ export async function getGameById(id: string) {
     return []; // Return an empty array on error
   }
 }
+
+  //function to fetch games base on query
+  export async function getGamesByQuery(name: string, genre: string) {
+    try {
+      const response = await fetch(`http://localhost:8080/api/igdb/get_games_by_query?name=${name}&genre=${genre}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      return data; // Return the array of games
+    } catch (error) {
+      console.error('Error fetching games:', error);
+      return []; // Return an empty array on error
+    }
+  }

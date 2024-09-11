@@ -109,7 +109,16 @@ export default function GameBrowser() {
         ) : (
           <div className="flex flex-grow overflow-x-auto scrollbar-hide">
             {games.map((game, id) => (
-              <GameCard key={id} game={game} />
+              <a
+                key={id}
+                className="m-2 flex flex-col"
+                href={`/pages/games/${game.id}`}
+              >
+                <GameCard game={game} />
+                <h3 className="font-semibold  text-center text-2xl mt-2">
+                  {game.name}
+                </h3>
+              </a>
             ))}
           </div>
         )}

@@ -12,8 +12,12 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        franklin: ['Franklin Gothic', 'sans-serif'], // Add Franklin Gothic
+      },
     },
   },
   plugins: [],
 };
+
 export default config;

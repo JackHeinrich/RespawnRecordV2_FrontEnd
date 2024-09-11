@@ -17,11 +17,20 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* styles/global.css */
+@font-face {
+  font-family: 'Franklin Gothic';
+  src: url('/fonts/FRANKGO.ttf') format('ttf'),
+       url('/fonts/FRANKGO.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
 }

@@ -8,9 +8,12 @@ import TopBar from "../../components/TopBar/TopBar";
 
 import ProfileInfo from "@/app/components/ProfileInfo/ProfileInfo";
 
+import Spacer from "@/app/components/Spacer/Spacer";
+
 export default withPageAuthRequired(function Profile({ user }) {
   return (
     <>
+      <Spacer />
       <TopBar />
       <ProfileInfo user={user} />
       <div className="bg-gray-900 flex flex-col gap-8 items-center p-4">
