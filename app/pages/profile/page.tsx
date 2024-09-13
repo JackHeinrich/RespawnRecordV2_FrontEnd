@@ -15,7 +15,7 @@ export default withPageAuthRequired(function Profile({ user }) {
     <>
       <Spacer />
       <TopBar />
-      <ProfileInfo user={user} />
+      <ProfileInfo profileUser={user} />
       <div className="bg-gray-900 flex flex-col gap-8 items-center p-4">
         <h1 className="font-bold">Games Played</h1>
       </div>

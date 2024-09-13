@@ -1,9 +1,11 @@
 // steamController.js
 
+const BASE_URL = "http://localhost:8080/api/igdb"
+
 // Function to fetch all games from your API
 export async function getFrontPageGames(page = 0) {
     try {
-      const response = await fetch(`http://localhost:8080/api/igdb/frontpage_games?page=${page}`);
+      const response = await fetch(`${BASE_URL}/frontpage_games?page=${page}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -18,7 +20,7 @@ export async function getFrontPageGames(page = 0) {
 // Function to fetch all games from your API
 export async function getGameById(id: string) {
   try {
-    const response = await fetch(`http://localhost:8080/api/igdb/game_by_id?id=${id}`);
+    const response = await fetch(`${BASE_URL}/game_by_id?id=${id}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -33,7 +35,7 @@ export async function getGameById(id: string) {
   //function to fetch games base on query
   export async function getGamesByQuery(name: string, genre: string) {
     try {
-      const response = await fetch(`http://localhost:8080/api/igdb/get_games_by_query?name=${name}&genre=${genre}`);
+      const response = await fetch(`${BASE_URL}/igdb/get_games_by_query?name=${name}&genre=${genre}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
