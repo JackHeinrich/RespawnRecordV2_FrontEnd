@@ -6,7 +6,7 @@ function handleError(error: unknown): string {
     return 'An unknown error occurred';
   }
   
-  const BASE_URL = "http://localhost:8080/api/auth0"; // Adjust your base URL as needed
+  const BASE_URL = "https://respawnrecordv2-api.onrender.com/api/auth0"; // Adjust your base URL as needed
   
   // Get a user by user_id
   export async function getUserById(userId: string) {

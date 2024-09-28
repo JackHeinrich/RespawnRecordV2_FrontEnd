@@ -1,6 +1,6 @@
 // steamController.js
 
-const BASE_URL = "http://localhost:8080/api/igdb"
+const BASE_URL = "https://respawnrecordv2-api.onrender.com/api/igdb"
 
 // Function to fetch all games from your API
 export async function getFrontPageGames(page = 0) {
