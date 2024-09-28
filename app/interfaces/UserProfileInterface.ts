@@ -7,6 +7,6 @@ export interface UserProfile {
   picture: string; // URL to the user's profile picture
   nickname: string; // User's nickname
   games: Game[]; // Array of Game objects
-  following: String[];
+  following: string[];
   user_metadata: {nickname: string};
 }

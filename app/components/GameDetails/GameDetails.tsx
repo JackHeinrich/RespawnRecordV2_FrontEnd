@@ -3,7 +3,7 @@
 import HeartButton from "@/app/components/HeartButton/HeartButton"; // Adjust the import path as needed
 
 interface GameDetailsProps {
-  gameData: any; // Replace `any` with your specific type if available
+  gameData: {}; // Replace `any` with your specific type if available
 }
 
 export default function GameDetails({ gameData }: GameDetailsProps) {

@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import { useState, useEffect } from "react";
 import TopBar from "@/app/components/TopBar/TopBar";
 import { getGamesByQuery } from "@/app/api/igdb/igdbController";
@@ -8,8 +10,6 @@ import { Game } from "@/app/interfaces/GameInterface";
 import Spacer from "@/app/components/Spacer/Spacer";
 import PageButton from "@/app/components/PageButton/PageButton"; // Import the PageButton component
 import Throbber from "@/app/components/Throbber/Throbber"; // Import the Throbber component
-
-import HeartButton from "@/app/components/HeartButton/HeartButton";
 
 export default function SearchResultsPage({
   params,

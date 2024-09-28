@@ -54,8 +54,6 @@ export default function UserResultsPage({
     );
   }
 
-  console.log;
-
   return (
     <>
       <Spacer />

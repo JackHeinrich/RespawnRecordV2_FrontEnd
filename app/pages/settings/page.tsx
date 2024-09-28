@@ -12,7 +12,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 export default function Page() {
   const [nickname, setNickname] = useState(""); // State for nickname input
   const [message, setMessage] = useState(null); // State for success/error message
-  const { user, error: userError, isLoading } = useUser();
+  const { user, error: userError } = useUser();
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
