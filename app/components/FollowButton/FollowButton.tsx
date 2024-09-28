@@ -23,9 +23,10 @@ export default function FollowButton({ otherUserId }: Props) {
 
   // Fetch the current user details
   const fetchCurrentUser = async () => {
+    console.log(user);
     if (user?.user_id) {
       try {
-        const fetchedCurrentUser = await getUserById(user.user_id); // Fetch current user data
+        const fetchedCurrentUser = await getUserById(user.user_id as string); // Fetch current user data
         setCurrentUser(fetchedCurrentUser); // Update state with the current user data
       } catch (err) {
         console.error("Failed to fetch current user data:", err);
@@ -80,9 +81,13 @@ export default function FollowButton({ otherUserId }: Props) {
   }
 
   // Check if the current user is following the other user
+  if (!otherUser) {
+    return <></>;
+  }
+
   const isFollowing =
     currentUser &&
-    currentUser.user_metadata?.followed_users?.includes(otherUser?.user_id);
+    currentUser.user_metadata?.followed_users?.includes(otherUser.user_id);
 
   const handleFollowUnfollow = async () => {
     if (!user) {
@@ -102,6 +107,10 @@ export default function FollowButton({ otherUserId }: Props) {
         await unfollowUser(currentUser.user_id, otherUser?.user_id); // Call the unfollow function
         console.log(`Successfully unfollowed ${otherUser?.user_id}`);
       } else {
+        if (!currentUser) {
+          setIsLoadingStateChange(false);
+          return;
+        }
         // Call the follow function to follow the user
         console.log(`Follow ${otherUser?.user_id}`);
         await followUser(currentUser.user_id, otherUser?.user_id); // Use the current user ID

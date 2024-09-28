@@ -15,7 +15,7 @@ export default function SearchBar() {
     }
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (query.trim()) {
       if (category === "Games") {
@@ -26,7 +26,7 @@ export default function SearchBar() {
     }
   };
 
-  const handleCategoryChange = (newCategory) => {
+  const handleCategoryChange = (newCategory: string) => {
     setCategory(newCategory);
   };
 

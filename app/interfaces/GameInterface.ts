@@ -6,4 +6,5 @@ export interface Game {
     name: string,
     summary: string,
     total_rating: number,
+    length: number;
 }

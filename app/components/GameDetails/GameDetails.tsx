@@ -1,12 +1,13 @@
 "use client";
 
 import HeartButton from "@/app/components/HeartButton/HeartButton"; // Adjust the import path as needed
+import { Game } from "@/app/interfaces/GameInterface";
 
-interface GameDetailsProps {
-  gameData: {}; // Replace `any` with your specific type if available
+interface Props {
+  gameData: Game;
 }
 
-export default function GameDetails({ gameData }: GameDetailsProps) {
+export default function GameDetails({ gameData }: Props) {
   // Base URL for genre search
   const genreBaseUrl = "/pages/searchResult/any"; // Update this based on your routing setup
 
