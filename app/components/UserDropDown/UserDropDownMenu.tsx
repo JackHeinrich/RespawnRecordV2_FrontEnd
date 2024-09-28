@@ -26,7 +26,7 @@ export default function DropDownMenu() {
             {/* Head to profile page */}
             {({ active }) => (
               <a
-                href="/pages/profile"
+                href={`/pages/profile/${user.user_id}`}
                 className={`bg-gray-800 block px-4 py-2 text-sm text-white ${
                   active ? "bg-gray-900 text-gray-900" : ""
                 }`}
@@ -45,6 +45,19 @@ export default function DropDownMenu() {
                 }`}
               >
                 Logout
+              </a>
+            )}
+          </MenuItem>
+          <MenuItem>
+            {/* Log Out */}
+            {({ active }) => (
+              <a
+                href="/pages/settings"
+                className={`bg-gray-800 block px-4 py-2 text-sm text-white ${
+                  active ? "bg-gray-900 text-gray-900" : ""
+                }`}
+              >
+                Settings
               </a>
             )}
           </MenuItem>

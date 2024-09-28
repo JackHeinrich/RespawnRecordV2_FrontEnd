@@ -33,9 +33,9 @@ export async function getGameById(id: string) {
 }
 
   //function to fetch games base on query
-  export async function getGamesByQuery(name: string, genre: string) {
+  export async function getGamesByQuery(name: string, genre: string, page = 0) {
     try {
-      const response = await fetch(`${BASE_URL}/igdb/get_games_by_query?name=${name}&genre=${genre}`);
+      const response = await fetch(`${BASE_URL}/get_games_by_query?name=${name}&genre=${genre}&page=${page}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

@@ -1,25 +1,107 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SearchBar() {
   const { push } = useRouter();
-  const [query, setQuery] = useState(""); // State to manage the input value
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("Games");
+
+  // Initialize only on the client side
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Import Flowbite dynamically
+      import("flowbite").then(({ initFlowbite }) => initFlowbite());
+    }
+  }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents the default form submission
+    e.preventDefault();
     if (query.trim()) {
-      push(`/pages/searchResult/${query}/any`); // Use the input value to navigate
+      if (category === "Games") {
+        push(`/pages/searchResult/${query}/any`);
+      } else if (category === "Users") {
+        push(`/pages/userResults/${query}`);
+      }
     }
   };
 
+  const handleCategoryChange = (newCategory) => {
+    setCategory(newCategory);
+  };
+
   return (
-    <form className="w-full" onSubmit={handleSubmit}>
-      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-        <div className="relative mt-1">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+    <form className="max-w-lg mx-auto min-w-96 dark" onSubmit={handleSubmit}>
+      <div className="flex">
+        <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
+          Search
+        </label>
+        <button
+          id="dropdown-button"
+          data-dropdown-toggle="dropdown"
+          className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+          type="button"
+        >
+          {category}{" "}
+          <svg
+            className="w-2.5 h-2.5 ms-2.5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        </button>
+        <div
+          id="dropdown"
+          className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+        >
+          <ul
+            className="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="dropdown-button"
+          >
+            <li>
+              <button
+                type="button"
+                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                onClick={() => handleCategoryChange("Games")}
+              >
+                Games
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                onClick={() => handleCategoryChange("Users")}
+              >
+                Users
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div className="relative w-full">
+          <input
+            type="search"
+            id="search-dropdown"
+            className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+            placeholder={`Search ${category}`}
+            required
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
             <svg
-              className="w-4 h-4 text-gray-500 dark:text-gray-400"
+              className="w-4 h-4"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -33,17 +115,10 @@ export default function SearchBar() {
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
               />
             </svg>
-          </div>
-          <input
-            type="search"
-            id="default-search"
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search Games"
-            required
-            onChange={(e) => setQuery(e.target.value)} // Update state on input change
-          />
+            <span className="sr-only">Search</span>
+          </button>
         </div>
-      </label>
+      </div>
     </form>
   );
 }
