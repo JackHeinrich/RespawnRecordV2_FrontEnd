@@ -134,7 +134,7 @@ export async function updateNickname(userId: string, nickname: string) {
 }
 
 // Function to add a game to a user's games list
-export async function addGame(userId: string, gameId: string) {
+export async function addGame(userId: string, gameId: number) {
   userId = decodeURI(userId); // Decode the userId if needed
   const url = `${BASE_URL}/add_game/${userId}`; // Adjust the endpoint to match your backend route
 
@@ -160,7 +160,7 @@ export async function addGame(userId: string, gameId: string) {
 }
 
 // Function to remove a game from a user's games list
-export async function removeGame(userId: string, gameId: string) {
+export async function removeGame(userId: string, gameId: number) {
   console.log(gameId)
   userId = decodeURI(userId); // Decode the userId if needed
   const url = `${BASE_URL}/remove_game/${userId}`; // Adjust the endpoint to match your backend route

@@ -24,7 +24,7 @@ export default function DropDownMenu() {
             {/* Head to profile page */}
             {({ active }) => (
               <a
-                href={`/pages/profile/${user.user_id}`}
+                href={`/pages/profile/${user?.user_id}`}
                 className={`bg-gray-800 block px-4 py-2 text-sm text-white ${
                   active ? "bg-gray-900 text-gray-900" : ""
                 }`}

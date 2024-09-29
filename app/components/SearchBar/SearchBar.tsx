@@ -15,7 +15,7 @@ export default function SearchBar() {
     }
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (query.trim()) {
       if (category === "Games") {
@@ -26,12 +26,12 @@ export default function SearchBar() {
     }
   };
 
-  const handleCategoryChange = (newCategory) => {
+  const handleCategoryChange = (newCategory: string) => {
     setCategory(newCategory);
   };
 
   return (
-    <form className="max-w-lg mx-auto min-w-96 dark" onSubmit={handleSubmit}>
+    <form className="max-w-lg mx-auto dark w-full" onSubmit={handleSubmit}>
       <div className="flex">
         <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
           Search
@@ -42,7 +42,7 @@ export default function SearchBar() {
           className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
           type="button"
         >
-          {category}{" "}
+          <div className="hidden sm:block">{category} </div>
           <svg
             className="w-2.5 h-2.5 ms-2.5"
             aria-hidden="true"

@@ -24,7 +24,7 @@ export default function HeartButton({ game }: Props) {
     const checkUserGames = async () => {
       if (user) {
         try {
-          const userData = await getUserById(user.user_id); // Fetch user data
+          const userData = await getUserById(user.user_id as string); // Fetch user data
           const games = userData.user_metadata.games || []; // Get user's games
           setIsAdded(games.includes(game.id)); // Check if the current game is in the user's games
         } catch (error) {
@@ -50,10 +50,10 @@ export default function HeartButton({ game }: Props) {
 
     try {
       if (isAdded) {
-        await removeGame(user.user_id, game.id); // Use user.sub as the user ID
+        await removeGame(user.user_id as string, game.id); // Use user.sub as the user ID
         setIsAdded(false); // Update the state to reflect the game has been removed
       } else {
-        await addGame(user.user_id, game.id); // Use user.sub as the user ID
+        await addGame(user.user_id as string, game.id); // Use user.sub as the user ID
         setIsAdded(true); // Update the state to reflect the game has been added
       }
     } catch (error) {

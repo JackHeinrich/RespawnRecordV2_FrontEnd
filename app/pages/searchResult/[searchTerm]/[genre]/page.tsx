@@ -10,6 +10,7 @@ import { Game } from "@/app/interfaces/GameInterface";
 import Spacer from "@/app/components/Spacer/Spacer";
 import PageButton from "@/app/components/PageButton/PageButton"; // Import the PageButton component
 import Throbber from "@/app/components/Throbber/Throbber"; // Import the Throbber component
+import HeartButton from "@/app/components/HeartButton/HeartButton";
 
 export default function SearchResultsPage({
   params,
@@ -83,12 +84,11 @@ export default function SearchResultsPage({
             <div className="flex flex-col w-full md:w-1/4 lg:w-2/3">
               {games.length > 0 ? (
                 games.map((game) => (
-                  <a
+                  <div
                     key={game.id}
                     className="flex flex-col md:flex-row bg-gray-900 m-4 p-4 rounded-md"
-                    href={`/pages/games/${game.id}`}
                   >
-                    <div className="max-w-96 min-w-96">
+                    <div className="w-full  sm:max-w-96 sm:min-w-96">
                       <GameCard game={game} />
                     </div>
                     <div className="flex flex-col ml-4 max-w-full">
@@ -107,8 +107,14 @@ export default function SearchResultsPage({
                       <p className="text-base md:text-lg text-gray-400 overflow-auto">
                         {game.summary ? game.summary : "No summary available"}
                       </p>
+                      <div className="mt-2 flex gap-4 text-center content-center">
+                        <HeartButton game={game} />
+                        <div className="flex-col text-center content-center text-xl font-semibold text-blue-400 hover:text-blue-600">
+                          <a href={`/pages/games/${game.id}`}>More</a>
+                        </div>
+                      </div>
                     </div>
-                  </a>
+                  </div>
                 ))
               ) : (
                 <p>No games found.</p>

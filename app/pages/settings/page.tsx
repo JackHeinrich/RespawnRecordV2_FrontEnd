@@ -11,16 +11,16 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function Page() {
   const [nickname, setNickname] = useState(""); // State for nickname input
-  const [message, setMessage] = useState(null); // State for success/error message
+  const [message, setMessage] = useState({ text: "", type: "" }); // State for success/error message
   const { user, error: userError } = useUser();
 
   // Function to handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission behavior
 
     // Call the function to update the nickname
     try {
-      const response = await updateNickname(user?.user_id, nickname);
+      const response = await updateNickname(user?.user_id as string, nickname);
       console.log(response);
       setMessage({ text: "Nickname updated successfully.", type: "success" }); // Set success message
       setNickname(""); // Clear the input field

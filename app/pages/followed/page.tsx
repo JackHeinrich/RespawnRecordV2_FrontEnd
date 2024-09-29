@@ -18,14 +18,14 @@ export default function FollowedPage() {
   const fetchFollowed = async () => {
     if (user?.user_id) {
       try {
-        const fetchedUser = await getUserById(user.user_id); // Fetch current user data
+        const fetchedUser = await getUserById(user.user_id as string); // Fetch current user data
         const followedIds = fetchedUser.user_metadata?.followed_users || []; // Get the followed IDs
 
         console.log(user.user_id);
 
         // Fetch details for each followed
         const followedDetails = await Promise.all(
-          followedIds.map(async (followedId) => {
+          followedIds.map(async (followedId: string) => {
             if (followedId != "undefined") {
               const followed = await getUserById(followedId); // Fetch each followed's details
               return followed;
